@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="./output.css" />
     <title>Finance Tracker</title>
     <link href="style.css" rel="stylesheet" />
+    <!-- Flatpickr CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
   </head>
   <body class="min-h-screen flex flex-col md:flex-row bg-gray-900 text-white">
     <!-- Sidebar -->
@@ -120,6 +125,7 @@
                 id="date"
                 class="bg-gray-700 rounded px-3 py-2 text-white w-full"
                 required
+                data-provide="datepicker"
               />
               <select
                 id="category"
@@ -153,7 +159,28 @@
         </div>
       </div>
     </main>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css"
+      integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"
+      integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="./assests/js/index.js"></script>
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      flatpickr("#date", {
+        dateFormat: "Y-m-d",
+        maxDate: "today"
+      });
+    </script>
   </body>
 </html>
