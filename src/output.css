@@ -9,9 +9,9 @@
       "Courier New", monospace;
     --color-red-400: oklch(70.4% 0.191 22.216);
     --color-red-500: oklch(63.7% 0.237 25.331);
+    --color-red-700: oklch(50.5% 0.213 27.518);
     --color-red-900: oklch(39.6% 0.141 25.723);
     --color-yellow-400: oklch(85.2% 0.199 91.936);
-    --color-lime-400: oklch(84.1% 0.238 128.85);
     --color-green-300: oklch(87.1% 0.15 154.449);
     --color-green-400: oklch(79.2% 0.209 151.711);
     --color-green-900: oklch(39.3% 0.095 152.535);
@@ -203,17 +203,14 @@
   .mb-8 {
     margin-bottom: calc(var(--spacing) * 8);
   }
-  .mb-10 {
-    margin-bottom: calc(var(--spacing) * 10);
-  }
   .flex {
     display: flex;
   }
   .grid {
     display: grid;
   }
-  .table {
-    display: table;
+  .hidden {
+    display: none;
   }
   .h-2 {
     height: calc(var(--spacing) * 2);
@@ -224,29 +221,14 @@
   .w-2 {
     width: calc(var(--spacing) * 2);
   }
-  .w-64 {
-    width: calc(var(--spacing) * 64);
-  }
-  .w-96 {
-    width: calc(var(--spacing) * 96);
-  }
   .w-full {
     width: 100%;
   }
   .flex-1 {
     flex: 1;
   }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
-  }
   .flex-col {
     flex-direction: column;
-  }
-  .flex-row {
-    flex-direction: row;
   }
   .items-center {
     align-items: center;
@@ -266,8 +248,8 @@
   .gap-6 {
     gap: calc(var(--spacing) * 6);
   }
-  .gap-8 {
-    gap: calc(var(--spacing) * 8);
+  .gap-x-3 {
+    column-gap: calc(var(--spacing) * 3);
   }
   .overflow-hidden {
     overflow: hidden;
@@ -283,10 +265,6 @@
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
-  }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
   }
   .bg-blue-500 {
     background-color: var(--color-blue-500);
@@ -309,8 +287,8 @@
   .bg-green-900 {
     background-color: var(--color-green-900);
   }
-  .bg-lime-400 {
-    background-color: var(--color-lime-400);
+  .bg-red-500 {
+    background-color: var(--color-red-500);
   }
   .bg-red-900 {
     background-color: var(--color-red-900);
@@ -324,14 +302,14 @@
   .p-6 {
     padding: calc(var(--spacing) * 6);
   }
-  .p-10 {
-    padding: calc(var(--spacing) * 10);
-  }
   .px-3 {
     padding-inline: calc(var(--spacing) * 3);
   }
   .px-4 {
     padding-inline: calc(var(--spacing) * 4);
+  }
+  .py-1 {
+    padding-block: calc(var(--spacing) * 1);
   }
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
@@ -380,21 +358,11 @@
   .text-red-400 {
     color: var(--color-red-400);
   }
-  .text-red-500 {
-    color: var(--color-red-500);
-  }
   .text-white {
     color: var(--color-white);
   }
   .text-yellow-400 {
     color: var(--color-yellow-400);
-  }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
   }
   .hover\:bg-blue-800 {
     &:hover {
@@ -407,6 +375,13 @@
     &:hover {
       @media (hover: hover) {
         background-color: var(--color-gray-700);
+      }
+    }
+  }
+  .hover\:bg-red-700 {
+    &:hover {
+      @media (hover: hover) {
+        background-color: var(--color-red-700);
       }
     }
   }
@@ -427,11 +402,6 @@
       margin-bottom: calc(var(--spacing) * 0);
     }
   }
-  .md\:mb-8 {
-    @media (width >= 48rem) {
-      margin-bottom: calc(var(--spacing) * 8);
-    }
-  }
   .md\:mb-10 {
     @media (width >= 48rem) {
       margin-bottom: calc(var(--spacing) * 10);
@@ -447,11 +417,6 @@
       width: auto;
     }
   }
-  .md\:flex-col {
-    @media (width >= 48rem) {
-      flex-direction: column;
-    }
-  }
   .md\:flex-row {
     @media (width >= 48rem) {
       flex-direction: row;
@@ -460,11 +425,6 @@
   .md\:items-start {
     @media (width >= 48rem) {
       align-items: flex-start;
-    }
-  }
-  .md\:justify-start {
-    @media (width >= 48rem) {
-      justify-content: flex-start;
     }
   }
   .md\:gap-4 {
@@ -524,27 +484,42 @@
       gap: calc(var(--spacing) * 8);
     }
   }
+  .dark\:block {
+    @media (prefers-color-scheme: dark) {
+      display: block;
+    }
+  }
+  .dark\:hidden {
+    @media (prefers-color-scheme: dark) {
+      display: none;
+    }
+  }
 }
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
+.dark > body > * {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+:root {
+  --dark-background: #1d1d1d;
+  --dark-text: #e2e8f0;
+}
+#darkModeToggle i {
+  transition: opacity 0.3s ease-in-out;
+}
+#darkModeToggle i.hidden {
+  opacity: 0;
+}
+#darkModeToggle i.block {
+  opacity: 1;
 }
 @property --tw-font-weight {
   syntax: "*";
   inherits: false;
 }
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
-}
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
       --tw-font-weight: initial;
-      --tw-outline-style: solid;
     }
   }
 }
