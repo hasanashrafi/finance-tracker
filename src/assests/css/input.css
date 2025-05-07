@@ -1,1 +1,23 @@
 @import "tailwindcss";
+
+.dark > body > * {
+  background-color: var(--dark-background);
+  color: var(--dark-text);
+}
+
+:root {
+  --dark-background: #1d1d1d;
+  --dark-text: #e2e8f0;
+}
+
+
+
+#darkModeToggle i {
+  transition: opacity 0.3s ease-in-out;
+}
+#darkModeToggle i.hidden {
+  opacity: 0;
+}
+#darkModeToggle i.block {
+  opacity: 1;
+}
