@@ -1,11 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-900 text-white">
+<html lang="en" class="dark text-white">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="./output.css" />
     <title>Finance Tracker</title>
-    <link href="style.css" rel="stylesheet" />
+
     <!-- Flatpickr CSS -->
     <link
       rel="stylesheet"
@@ -17,6 +24,7 @@
     <aside
       class="w-full md:w-64 bg-gray-800 p-4 md:p-6 flex flex-col items-center md:items-start mb-4 md:mb-0"
     >
+     
       <h1
         class="text-xl md:text-2xl font-bold mb-2 md:mb-10 w-full text-center md:text-left"
       >
@@ -48,7 +56,17 @@
 
     <!-- Main Content -->
     <main class="flex-1 p-2 sm:p-4 md:p-10 w-full">
-      <h2 class="text-2xl md:text-3xl font-bold mb-6 md:mb-8">Finance</h2>
+      <div class="flex items-center gap-x-3 mb-6">
+        <h2 class="text-2xl md:text-3xl font-bold ">Finance</h2>
+      <button
+      id="darkModeToggle"
+      class="text-yellow-400 text-xl  "
+      aria-label="Toggle dark mode"
+    >
+      <i id="moon" class="fas fa-moon hidden dark:block"></i>
+      <i id="sun" class="fas fa-sun dark:hidden"></i>
+    </button>
+      </div>
       <!-- Summary Cards -->
       <div class="flex flex-col md:flex-row gap-4 md:gap-6 mb-8">
         <div class="bg-gray-800 rounded-xl p-6 flex-1">
@@ -71,12 +89,7 @@
         <div class="flex-1">
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-semibold">Transactions</h3>
-            <button
-              id="addTransactionBtn"
-              class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded w-full md:w-auto"
-            >
-              + Add Transaction
-            </button>
+          
           </div>
           <div class="overflow-x-auto">
             <table
@@ -123,9 +136,9 @@
               <input
                 type="date"
                 id="date"
+                placeholder="Select date"
                 class="bg-gray-700 rounded px-3 py-2 text-white w-full"
                 required
-                data-provide="datepicker"
               />
               <select
                 id="category"
@@ -159,28 +172,11 @@
         </div>
       </div>
     </main>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.css"
-      integrity="sha512-YdYyWQf8AS4WSB0WWdc3FbQ3Ypdm0QCWD2k4hgfqbQbRCJBEgX0iAegkl2S1Evma5ImaVXLBeUkIlP6hQ1eYKQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/1.0.10/datepicker.min.js"
-      integrity="sha512-RCgrAvvoLpP7KVgTkTctrUdv7C6t7Un3p1iaoPr1++3pybCyCsCZZN7QEHMZTcJTmcJ7jzexTO+eFpHk4OCFAg=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-    <script src="./assests/js/index.js"></script>
+
     <!-- Flatpickr JS -->
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script>
-      flatpickr("#date", {
-        dateFormat: "Y-m-d",
-        maxDate: "today"
-      });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.js"></script>
+    <script src="./assests/js/index.js" defer type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script src="./assests/js/darkMode.js" defer type="module"></script>
   </body>
 </html>
